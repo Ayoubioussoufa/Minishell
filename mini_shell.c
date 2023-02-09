@@ -68,7 +68,7 @@ t_shell *parse_line(char *line)
 		// this condition becouse we dont want a pipe after commands
 		if (args[i + 1])
 			// creat new node with pipe type between to command nodes
-			ft_lstadd_back(&shell, ft_lstnew("|", 3));
+			ft_lstadd_back(&shell, ft_lstnew("|", 2));
 		i++;
 	}
 	return(shell);
