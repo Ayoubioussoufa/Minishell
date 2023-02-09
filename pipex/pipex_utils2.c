@@ -87,3 +87,4 @@ void	execute(t_data *data, char *cmd, char **env)
 	if (execve(data->cmd, data->argv, env) == -1)
 		error(NULL, errno);
 }
+// "ls -l" | "wc -w"

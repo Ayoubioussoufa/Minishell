@@ -84,6 +84,7 @@ int main()
 	{
 	 	read = readline("Minishell> ");
 		shell = parse_line(read);
+		ft_execute(shell);
 		while(shell)
 		{
 			printf("%s\n", shell->cmd);
@@ -92,3 +93,6 @@ int main()
 	}
 	return 0;
 }
+
+// variable name -v = split(..., "found: ") to get the variable value !!
+// < > ||| << >>
