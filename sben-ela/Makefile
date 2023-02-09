@@ -6,11 +6,11 @@
 #    By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 18:19:06 by sben-ela          #+#    #+#              #
-#    Updated: 2023/02/09 13:20:27 by sben-ela         ###   ########.fr        #
+#    Updated: 2023/02/09 15:59:22 by sben-ela         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 NAME = mini_shell.a
 PROG = mini_shell
 SOURCES = mini_shell.c ft_split.c utils.c

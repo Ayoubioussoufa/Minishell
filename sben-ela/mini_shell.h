@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:36:00 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/02/09 10:19:57 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/02/09 16:40:25 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef	struct	shell
 {
-	char			**cmd;
+	char			*cmd;
 	/// type => infile = 0, outfile = 1, pipe = 2,cmd = 3;
 	int				type;
 	struct shell	*next;
@@ -34,3 +34,4 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(char *str);
 char	**ft_split(char const *str, char c);
 #endif
+

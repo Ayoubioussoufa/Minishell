@@ -11,7 +11,7 @@ t_shell	*ft_lstlast(t_shell *lst)
 	return (lst);
 }
 
-t_shell	*ft_lstnew(char **content, int type)
+t_shell	*ft_lstnew(char *content, int type)
 {
 	t_shell	*x;
 
@@ -34,42 +34,7 @@ int ft_size(char *str)
 	return(i);
 }
 
-char **ft_content(char *str)
-{
-	int i;
-	int	j;
-	char **dst;
 
-	i = 0;
-	j = 0;
-	while(str[j])
-	{
-		if (str[j] == ' ')
-			i++;
-		j++;
-	}
-	dst = malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	j = 0;
-	while(*str && *str != '|')
-	{
-		while(*str == ' ')
-			str++;
-		if(*str)
-			dst[i] = malloc(ft_size(str) + 1);
-		while(*str && *str != ' ')
-		{
-			dst[i][j++] = *str++;
-		}
-		if(*str == ' ')
-		{
-			j = 0;
-			i++;
-		}
-	}
-	dst[i + 1]= 0;
-	return(dst);
-}
 
 void	ft_lstadd_back(t_shell **lst, t_shell *new)
 {
@@ -86,22 +51,24 @@ void	ft_lstadd_back(t_shell **lst, t_shell *new)
 
 t_shell *parse_line(char *line)
 {
-	int i;
-	t_shell *shell;
+	t_shell	*shell;
+	char	**args;
+	int		i;
+	int		j;
+
 	i = 0;
-	while (line[i])
+	j = 0;
+	shell = 0;
+	// split line with pipe
+	args = ft_split(line, '|');
+	while (args[i])
 	{
-	   while (line[i] == ' ')
-	       i++;
-	    //if (line[i] == '|')
-		//	ft_lstadd_back(&shell , ft_lstnew(ft_content(line + i), 2));
-		if(line[i] != '|' && line[i])
-		{
-			ft_lstadd_back(&shell , ft_lstnew(ft_content(line + i), 3));
-		}
-		while(line[i] != '|' && line[i])
-			i++;
-		line += i;
+		// creat new node and add it to shell list(shell)
+		ft_lstadd_back(&shell, ft_lstnew(args[i], 3));
+		// this condition becouse we dont want a pipe after commands
+		if (args[i + 1])
+			// creat new node with pipe type between to command nodes
+			ft_lstadd_back(&shell, ft_lstnew("|", 3));
 		i++;
 	}
 	return(shell);
@@ -110,7 +77,7 @@ int main()
 {
 	char    *read;
 	t_shell *shell;
-	int i = 0;
+
 	shell = NULL;
 	while(1)
 	{
@@ -118,12 +85,7 @@ int main()
 		shell = parse_line(read);
 		while(shell)
 		{
-			while(shell->cmd[i])
-			{
-				printf("+");
-				printf("%s\n", shell->cmd[i++]);
-			}
-			i = 0;
+			printf("%s\n", shell->cmd);
 			shell = shell->next;
 		}
 	}
