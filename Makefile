@@ -6,7 +6,7 @@
 #    By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 18:19:06 by sben-ela          #+#    #+#              #
-#    Updated: 2023/02/10 14:35:18 by aybiouss         ###   ########.fr        #
+#    Updated: 2023/02/10 17:20:16 by aybiouss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,12 @@ $(LIBFT) :
 $(PROG) : $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -lreadline -o $(PROG)
 	rm -f $(OBJECTS)
+
 clean:
 	rm -f $(OBJECTS)
+
 fclean: clean
-	rm -f $(NAME) $(PROG) $(LIBFT)
+	rm -f $(NAME) $(PROG)
 
 bonus: all
 	ar rc $(NAME)
