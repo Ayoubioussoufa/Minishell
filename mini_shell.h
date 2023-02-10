@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:36:00 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/02/10 17:44:39 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/02/10 20:56:46 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	**ft_split(char const *str, char c);
 void    ft_execute(t_shell *shell, char **env);
 char	*parse_redirect(char *line);
 //utils
+int	handle_couts(t_shell *shell);
 char	*ft_strtrim(char const *s1, char const *set);
 int		ft_strncmp(char *s1, char *s2, unsigned int n);
 char	*ft_strjoin(char const *s1, char const *s2);

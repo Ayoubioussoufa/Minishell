@@ -89,7 +89,7 @@ t_shell *parse_line(char *line)
 int main(int ac, char **av, char **env)
 {
 	(void)av;
-	// (void)env;
+	(void)env;
 	char    *read;
 	t_shell *shell;
 
@@ -101,17 +101,18 @@ int main(int ac, char **av, char **env)
 	}
 	while(1)
 	{
-		read = readline("Minishell> ");
+		read = readline("\033[0;32m 😎 @Minishell>> \033[0m");
 		read = parse_redirect(read);
 		if (!read)
 			return (0);
 		shell = parse_line(read);
-		ft_execute(shell, env);
-		// while(shell)
-		// {
-		// 	printf("%s\t %d\n", shell->cmd, shell->type);
-		// 	shell = shell->next;
-		// }
+		handle_couts(shell);
+		//ft_execute(shell, env);
+		//while(shell)
+		//{
+		//	printf("%s\t %d\n", shell->cmd, shell->type);
+		//	shell = shell->next;
+		//}
 	}
 	return 0;
 }
