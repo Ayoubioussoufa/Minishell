@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:28:01 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/10 11:42:44 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:20:05 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,34 +76,9 @@ char	**get_paths(char **env, t_shell *shell)
 
 void	ft_execute(t_shell *shell, char **env)
 {
-	// while(shell)
-	// {
-	// 	printf("%s\n", shell->cmd);
-	// 	shell = shell->next;
-	// }
-	printf("%s %d\n", shell->cmd, shell->type);
-	printf("%s %d\n", shell->next->cmd, shell->type);
-	printf("%s %d\n", shell->next->next->cmd, shell->type);
 	shell->cmds = ft_split(shell->cmd, ' ');
-	// printf("CMDSSS: %s\n", shell->cmds[0]);
-	shell->paths = get_paths(env, shell);
-	// printf("%s\n", shell->paths[0]);
-	// printf("%s\n", shell->paths[1]);
-	// printf("%s\n", shell->paths[2]);
-	// printf("%s\n", shell->paths[3]);
-	// printf("%s\n", shell->paths[4]);
-	// printf("%s\n", shell->paths[5]);
-	// printf("CMD : %s\n", shell->cmd);
+	shell->paths = get_paths(env, shell);;
 	shell->argv = get_cmd(shell->paths, shell->cmds[0]);
-	// printf("ARGV: %s\n", shell->argv);
-	// if (!shell->cmd)
-	// {
-	// 	// free_paths(shell->paths);
-	// 	ft_putstr_fd("Command not found: ", 2);
-	// 	ft_putstr_fd(shell->cmd, 2);
-	// 	ft_putstr_fd("\n", 2);
-	// 	exit(127);
-	// }
-	// if (execve(shell->argv, shell->cmds, env) == -1)
-	// 	error(NULL, errno);
+	if (execve(shell->argv, shell->cmds, env) == -1)
+		error(NULL, errno);
 }

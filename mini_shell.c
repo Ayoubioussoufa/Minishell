@@ -49,6 +49,7 @@ void	ft_lstadd_back(t_shell **lst, t_shell *new)
 	}
 }
 
+
 t_shell *parse_line(char *line)
 {
 	t_shell	*shell;
@@ -59,10 +60,19 @@ t_shell *parse_line(char *line)
 	i = 0;
 	j = 0;
 	shell = 0;
+	///handle if pipe exist in the bigin or in the last of the line
+	if(line[0] == '|' || line[ft_strlen(line) - 1] == '|')
+	{
+		printf("syntax error near unexpected token `|'\n");
+		return(0);
+	}
 	// split line with pipe
 	args = ft_split(line, '|');
+	i = 0;
 	while (args[i])
 	{
+		args[i] = ft_strtrim(args[i], " ");
+		//handle_redirects(&shell, args[i]);
 		// creat new node and add it to shell list(shell)
 		ft_lstadd_back(&shell, ft_lstnew(args[i], 3));
 		// this condition becouse we dont want a pipe after commands
@@ -87,12 +97,12 @@ int main(int ac, char **av, char **env)
 	{
 	 	read = readline("Minishell> ");
 		shell = parse_line(read);
-		// ft_execute(shell, env);
+		//ft_execute(shell, env);
 		while(shell)
-	{
-		printf("%s\t %d\n", shell->cmd, shell->type);
-		shell = shell->next;
-	}
+		{
+			printf("%s\t %d\n", shell->cmd, shell->type);
+			shell = shell->next;
+		}
 	}
 	return 0;
 }
