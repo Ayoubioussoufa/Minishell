@@ -3,33 +3,31 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+         #
+#    By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 18:19:06 by sben-ela          #+#    #+#              #
-#    Updated: 2023/02/09 15:59:22 by sben-ela         ###   ########.fr        #
+#    Updated: 2023/02/10 11:38:17 by aybiouss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
-NAME = mini_shell.a
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 PROG = mini_shell
-SOURCES = mini_shell.c ft_split.c utils.c
+LIBFT = Libft/libft.a
+SOURCES = mini_shell.c ft_split.c utils.c ft_execute.c $(LIBFT)
 
 OBJECTS = $(SOURCES:.c=.o)
 
-
-all: $(NAME)
-
-$(NAME): $(OBJECTS)
-	ar rc $(NAME) $(OBJECTS)
-	cc $(CFLAGS) $(NAME) -lreadline -o $(PROG)
-	rm -f $(NAME) $(OBJECTS)
+all : $(PROG)
+$(LIBFT) :
+	make -C libft
+$(PROG) : $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) -lreadline -o $(PROG)
 
 clean:
 	rm -f $(OBJECTS)
 
 fclean: clean
-	rm -f $(NAME) $(PROG)
+	rm -f $(NAME) $(PROG) $(LIBFT)
 
 bonus: all
 	ar rc $(NAME)

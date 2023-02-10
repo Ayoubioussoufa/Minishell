@@ -74,8 +74,11 @@ t_shell *parse_line(char *line)
 	return(shell);
 }
 
-int main()
+int main(int ac, char **av, char **env)
 {
+	(void)ac;
+	(void)av;
+	(void)env;
 	char    *read;
 	t_shell *shell;
 
@@ -84,12 +87,12 @@ int main()
 	{
 	 	read = readline("Minishell> ");
 		shell = parse_line(read);
-		ft_execute(shell);
+		// ft_execute(shell, env);
 		while(shell)
-		{
-			printf("%s\n", shell->cmd);
-			shell = shell->next;
-		}
+	{
+		printf("%s\t %d\n", shell->cmd, shell->type);
+		shell = shell->next;
+	}
 	}
 	return 0;
 }
