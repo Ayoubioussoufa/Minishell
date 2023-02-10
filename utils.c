@@ -32,3 +32,16 @@ int ft_strchr (char *str, char c)
 	}
 	return(0);
 }
+
+int	ft_lstsize(t_shell *lst)
+{
+	int	size;
+
+	size = 0;
+	while (lst != NULL)
+	{
+		size++;
+		lst = lst->next;
+	}
+	return (size);
+}
