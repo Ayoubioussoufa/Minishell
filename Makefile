@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+         #
+#    By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 18:19:06 by sben-ela          #+#    #+#              #
-#    Updated: 2023/02/10 11:38:17 by aybiouss         ###   ########.fr        #
+#    Updated: 2023/02/10 17:35:14 by sben-ela         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 PROG = mini_shell
 LIBFT = Libft/libft.a
-SOURCES = mini_shell.c ft_split.c utils.c ft_execute.c $(LIBFT)
+SOURCES = mini_shell.c ft_split.c utils.c ft_execute.c parse_redirect.c  ft_error.c $(LIBFT)
 
 OBJECTS = $(SOURCES:.c=.o)
 

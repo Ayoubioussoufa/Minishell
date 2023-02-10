@@ -60,22 +60,23 @@ t_shell *parse_line(char *line)
 	i = 0;
 	j = 0;
 	shell = 0;
-	///handle if pipe exist in the bigin or in the last of the line
-	if(line[0] == '|' || line[ft_strlen(line) - 1] == '|')
-	{
-		printf("syntax error near unexpected token `|'\n");
-		return(0);
-	}
 	// split line with pipe
 	args = ft_split(line, '|');
 	i = 0;
 	while (args[i])
 	{
-		args[i] = ft_strtrim(args[i], " ");
-		//handle_redirects(&shell, args[i]);
+		if(!strcmp(args[i], ">>"))
+			ft_lstadd_back(&shell, ft_lstnew(">>", 4));
+		else if(!strcmp(args[i], "<<"))
+			ft_lstadd_back(&shell, ft_lstnew("<<", 5));
+		else if(!strcmp(args[i], ">"))
+			ft_lstadd_back(&shell, ft_lstnew(ft_strtrim(args[i++], " "), 1));
+		else if(!strcmp(args[i], "<"))
+			ft_lstadd_back(&shell, ft_lstnew(ft_strtrim(args[i++], " "), 0));
 		// creat new node and add it to shell list(shell)
-		ft_lstadd_back(&shell, ft_lstnew(args[i], 3));
-		// this condition becouse we dont want a pipe after commands
+		else
+			ft_lstadd_back(&shell, ft_lstnew(ft_strtrim(args[i], " "), 3));
+		//this condition becouse we dont want a pipe after commands
 		if (args[i + 1])
 			// creat new node with pipe type between to command nodes
 			ft_lstadd_back(&shell, ft_lstnew("|", 2));
@@ -84,18 +85,26 @@ t_shell *parse_line(char *line)
 	return(shell);
 }
 
+
 int main(int ac, char **av, char **env)
 {
-	(void)ac;
 	(void)av;
 	(void)env;
 	char    *read;
 	t_shell *shell;
 
 	shell = NULL;
+	if(ac != 1)
+	{
+		ft_error("invalid number of argument");
+		return(0);
+	}
 	while(1)
 	{
-	 	read = readline("Minishell> ");
+		read = readline("Minishell> ");
+		read = parse_redirect(read);
+		if (!read)
+			return (0);
 		shell = parse_line(read);
 		//ft_execute(shell, env);
 		while(shell)
