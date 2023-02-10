@@ -88,7 +88,7 @@ int main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
-	(void)env;
+	// (void)env;
 	char    *read;
 	t_shell *shell;
 
@@ -97,12 +97,12 @@ int main(int ac, char **av, char **env)
 	{
 	 	read = readline("Minishell> ");
 		shell = parse_line(read);
-		//ft_execute(shell, env);
-		while(shell)
-		{
-			printf("%s\t %d\n", shell->cmd, shell->type);
-			shell = shell->next;
-		}
+		ft_execute(shell, env);
+		// while(shell)
+		// {
+		// 	printf("%s\t %d\n", shell->cmd, shell->type);
+		// 	shell = shell->next;
+		// }
 	}
 	return 0;
 }

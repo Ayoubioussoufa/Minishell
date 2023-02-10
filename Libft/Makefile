@@ -6,7 +6,7 @@
 #    By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 13:37:46 by aybiouss          #+#    #+#              #
-#    Updated: 2022/10/24 17:18:46 by aybiouss         ###   ########.fr        #
+#    Updated: 2023/02/10 15:03:40 by aybiouss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,7 @@ ft_bzero.c	ft_isascii.c	ft_memcmp.c	ft_putchar_fd.c	ft_strchr.c	ft_strlen.c	ft_s
 ft_calloc.c	ft_isdigit.c	ft_memcpy.c	ft_putendl_fd.c	ft_strdup.c	ft_strncmp.c	ft_tolower.c \
 ft_isalnum.c	ft_isprint.c	ft_memmove.c ft_putnbr_fd.c ft_strlcat.c ft_toupper.c	ft_strnstr.c \
 ft_strjoin.c	ft_itoa.c	ft_strtrim.c	ft_strmapi.c	ft_striteri.c	ft_split.c \
-
-BON= ft_lstlast_bonus.c	ft_lstnew_bonus.c	ft_lstadd_front_bonus.c	ft_lstsize_bonus.c	ft_lstadd_back_bonus.c \
+ft_lstlast_bonus.c	ft_lstnew_bonus.c	ft_lstadd_front_bonus.c	ft_lstsize_bonus.c	ft_lstadd_back_bonus.c \
 ft_lstdelone_bonus.c	ft_lstclear_bonus.c	ft_lstmap_bonus.c	ft_lstiter_bonus.c \
 
 OBJ = $(SRCS:.c=.o)
@@ -38,5 +37,3 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(NAME) $(BONUS)
-	ar -rcs $(NAME) $(BONUS)

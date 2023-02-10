@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:36:00 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/02/10 14:01:52 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:20:56 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,20 @@
 # include <sys/wait.h>
 # include <sys/errno.h>
 # include <string.h>
+# include <signal.h>
 
 typedef	struct	shell
 {
-	/// type => infile = 0, outfile = 1, pipe = 2,cmd = 3;
+	/// type => infile = 0, outfile = 1 pipe = 2,cmd = 3;
 	int				type;
 	char			*cmd;
 	char			**cmds;
 	char			**paths;
 	char			*argv;
 	struct shell	*next;
+	int				infile;
+	int				outfile;
+	int		fd[2];
 }	t_shell;
 
 int		ft_strchr(char *str, char c);
@@ -46,6 +50,7 @@ int		ft_strncmp(char *s1, char *s2, unsigned int n);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 void	ft_putstr_fd(char *s, int fd);
+int		ft_lstsize(t_shell *lst);
 
 #endif
 
