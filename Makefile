@@ -6,11 +6,11 @@
 #    By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 18:19:06 by sben-ela          #+#    #+#              #
-#    Updated: 2023/02/10 17:20:16 by aybiouss         ###   ########.fr        #
+#    Updated: 2023/02/11 12:38:26 by aybiouss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 PROG = mini_shell
 LIBFT = Libft/libft.a
 SOURCES = mini_shell.c ft_split.c utils.c ft_execute.c $(LIBFT)

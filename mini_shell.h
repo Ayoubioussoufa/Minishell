@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:36:00 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/02/10 16:20:56 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:30:30 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(char *str);
 char	**ft_split(char const *str, char c);
 void    ft_execute(t_shell *shell, char **env);
+void	whatever(t_shell *shell, char **env);
 
 //utils
 char	*ft_strtrim(char const *s1, char const *set);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_shell.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/10 17:24:11 by aybiouss          #+#    #+#             */
+/*   Updated: 2023/02/11 12:45:44 by aybiouss         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mini_shell.h"
 
 t_shell	*ft_lstlast(t_shell *lst)
@@ -60,7 +72,7 @@ t_shell *parse_line(char *line)
 	i = 0;
 	j = 0;
 	shell = 0;
-	///handle if pipe exist in the bigin or in the last of the line
+	///handle if pipe exist in the begin or in the last of the line
 	if(line[0] == '|' || line[ft_strlen(line) - 1] == '|')
 	{
 		printf("syntax error near unexpected token `|'\n");
@@ -81,7 +93,7 @@ t_shell *parse_line(char *line)
 			ft_lstadd_back(&shell, ft_lstnew("|", 2));
 		i++;
 	}
-	return(shell);
+	return (shell);
 }
 
 int main(int ac, char **av, char **env)
@@ -92,12 +104,13 @@ int main(int ac, char **av, char **env)
 	char    *read;
 	t_shell *shell;
 
-	shell = NULL;
+	// shell = NULL;
+	shell = malloc(sizeof(t_shell) * 100);
 	while(1)
 	{
 	 	read = readline("Minishell> ");
 		shell = parse_line(read);
-		ft_execute(shell, env);
+		whatever(shell, env);
 		// while(shell)
 		// {
 		// 	printf("%s\t %d\n", shell->cmd, shell->type);
