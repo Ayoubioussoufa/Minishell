@@ -6,13 +6,13 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:05:16 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/02/10 14:01:34 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/02/10 20:24:22 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-static int	ft_lenword(char const *str, char c)
+int	ft_lenword(char const *str, char c)
 {
 	int	i;
 
