@@ -358,24 +358,18 @@ tputs: This function is used to output a string of characters on a terminal scre
 
 //for pwd : PWD in env	
 
-int	check_builtin(t_shell *shell)
-{//kola built in nsiftha l fonction dyalha ?
+int	check_builtins(t_shell *shell)
+{//kola built in nsiftha l fonction dyalha
 	if (!strncmp(shell->cmd, "echo"))
-		echo();
-	else (!strncmp(shell->cmd, "cd"))
-		cd();
-	else if (!strncmp(shell->cmd, "pwd"))
-		pwd();
-	else (!strncmp(shell->cmd, "export"))
-		export();
+		echo_builtin(shell->cmd );
+	else if(!strncmp(shell->cmd, "cd"))
+		cd_builtin();
+	else if(!strncmp(shell->cmd, "export"))
+		export_builtin();
 	else if (!strncmp(shell->cmd, "unset"))
-		unset();
-	else (!strncmp(shell->cmd, "env"))
-		env();
+		unset_builtin();
 	else (!strncmp(shell->cmd, "exit"))
-		exit();
-	else
-		return (1);
+		exit_builtin();
 	return (0);
 }
 
