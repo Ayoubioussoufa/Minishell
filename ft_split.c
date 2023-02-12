@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:05:16 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/02/10 20:24:22 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:32:22 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,23 @@ int	ft_lenword(char const *str, char c)
 
 	i = 0;
 	while (str[i] && str[i] != c)
+	{
+		if(str[i] == '"')
+		{
+			i++;
+			if(str[i - 1] == '"')
+				while(str[i] != '"')
+					i++;
+		}
+		if(str[i] == '\'')
+		{
+			i++;
+			if(str[i - 1] == '\'')
+				while(str[i] != '\'')
+					i++;
+		}
 		i++;
+	}
 	return (i);
 }
 
@@ -58,7 +74,9 @@ static void	ft_free(char **strs, int i)
 static	char	**ft_second(char **strs, const char *str, int c)
 {
 	int	i;
+	int len;
 
+	len = 0;
 	i = 0;
 	while (*str)
 	{
@@ -74,8 +92,9 @@ static	char	**ft_second(char **strs, const char *str, int c)
 			}
 			i++;
 		}
-		while (*str && *str != c)
-			str++;
+		len = ft_lenword(str, c);
+		while (*str++ && len)
+			len--;
 	}
 	strs [i] = 0;
 	return (strs);
@@ -93,12 +112,14 @@ char	**ft_split(char const *str, char c)
 		return (NULL);
 	while (str [i])
 	{
-		while (str [i] && str [i] == c)
+		while (str[i] && str[i] == c)
 			i++;
-		if (str [i])
+		if (str[i])
 			count ++;
-		while (str[i] && str [i] != c)
-		i++;
+		while (str[i] && str[i] != c)
+		{
+			i++;
+		}
 	}
 	strs = (char **)malloc(sizeof(char *) * count);
 	if (!strs)

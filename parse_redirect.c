@@ -28,19 +28,30 @@ char	*parse_redirect(char *line)
 
 	j = 0;
 	i = 0;
-	// handle if pipe exist in the begining or the last of the line
-	if (line[0] == '|')
-	{
-		ft_error("syntax error near unexpected token `|'");
-		return (0);
-	}
 	/// allocate to the new string
 	if (!(new_line = malloc(ft_strlen(line) + 1 + (count_redirect(line) * 2))))
+	{
+		ft_error("malloc not allocate");
 		return (0);
+	}
 	/// make the redirect between two pipe becouse when i split with pipe the redirect will exist alone in a argument
 	while (line[i])
 	{
-		// if we have "<<" in this case we make the the dilimeter between to pipe like it "|<<|" 
+		if(line[i] == '"')
+		{
+			new_line[j++] = line[i++];
+				while(line[i] != '"')
+					new_line[j++] = line[i++];
+			new_line[j++] = line[i++];
+		}
+		if(line[i] == '\'')
+		{
+			new_line[j++] = line[i++];
+				while(line[i] != '\'')
+					new_line[j++] = line[i++];
+			new_line[j++] = line[i++];
+		}
+		//if we have "<<" in this case we make the the dilimeter between to pipe like it "|<<|"
 		if(line[i] == '<' && line[i + 1] == '<')
 		{
 			new_line[j++] = '|';
@@ -49,6 +60,11 @@ char	*parse_redirect(char *line)
 			new_line[j++] = '|';
 			// skipp "<<"
 			i += 2;
+			// cpy the the string after <<
+			while(line[i] && line[i] != '|')
+			{
+				new_line[j++] = line[i++];
+			}
 		}
 		else if(line[i] == '>' && line[i + 1] == '>')
 		{
@@ -58,12 +74,22 @@ char	*parse_redirect(char *line)
 			new_line[j++] = '|';
 			// skipp ">>"
 			i += 2;
+			// cpy the the string after >>
+			while(line[i] && line[i] != '|')
+			{
+				new_line[j++] = line[i++];
+			}
 		}
 		else if (line[i] == '>' || line[i] == '<')
 		{
 			new_line[j++] = '|';
 			new_line[j++] = line[i++];
 			new_line[j++] = '|';
+			// cpy the the string after > or <
+			while(line[i] && line[i] != '|')
+			{
+				new_line[j++] = line[i++];
+			}
 		}
 		// cpy character in the new string
 		new_line[j++] = line[i++];
