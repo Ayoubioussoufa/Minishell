@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_shell.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/10 17:24:11 by aybiouss          #+#    #+#             */
+/*   Updated: 2023/02/11 12:45:44 by aybiouss         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mini_shell.h"
 
 t_shell	*ft_lstlast(t_shell *lst)
@@ -47,6 +59,15 @@ t_shell *parse_line(char *line)
 	i = 0;
 	j = 0;
 	shell = 0;
+<<<<<<< HEAD
+	///handle if pipe exist in the begin or in the last of the line
+	if(line[0] == '|' || line[ft_strlen(line) - 1] == '|')
+	{
+		printf("syntax error near unexpected token `|'\n");
+		return(0);
+	}
+=======
+>>>>>>> 13883f809b57d13f1ae59b4926bb5fc8e4ab2985
 	// split line with pipe
 	args = ft_split(line, '|');
 	i = 0;
@@ -72,7 +93,7 @@ t_shell *parse_line(char *line)
 		//}
 		i++;
 	}
-	return(shell);
+	return (shell);
 }
 
 int	ft_checkspace(const char *str)
@@ -94,12 +115,17 @@ int main(int ac, char **av, char **env)
 	char    *read;
 	t_shell *shell;
 
+<<<<<<< HEAD
+	// shell = NULL;
+	shell = malloc(sizeof(t_shell) * 100);
+=======
 	shell = NULL;
 	if(ac != 1)
 	{
 		ft_error("invalid number of argument");
 		return(0);
 	}
+>>>>>>> 13883f809b57d13f1ae59b4926bb5fc8e4ab2985
 	while(1)
 	{
 		read = readline("\033[0;32mMinishell>> \033[0m");
@@ -107,6 +133,7 @@ int main(int ac, char **av, char **env)
 		read += ft_checkspace(read);
 		read = parse_redirect(read);
 		shell = parse_line(read);
+<<<<<<< HEAD
 		//	//ft_execute(shell, env);
 		int i;
 		while(shell)
@@ -118,6 +145,24 @@ int main(int ac, char **av, char **env)
 			shell = shell->next;
 			
 		}
+=======
+<<<<<<< HEAD
+		whatever(shell, env);
+		// while(shell)
+		// {
+		// 	printf("%s\t %d\n", shell->cmd, shell->type);
+		// 	shell = shell->next;
+		// }
+=======
+		handle_couts(shell);
+		//ft_execute(shell, env);
+		//while(shell)
+		//{
+		//	printf("%s\t %d\n", shell->cmd, shell->type);
+		//	shell = shell->next;
+		//}
+>>>>>>> 13883f809b57d13f1ae59b4926bb5fc8e4ab2985
+>>>>>>> 7ebcd45e1e59ad676fdec1fe1ddf6f12c220bb25
 	}
 	return 0;
 }

@@ -6,7 +6,15 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:36:00 by sben-ela          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/02/12 17:18:56 by sben-ela         ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Updated: 2023/02/10 17:30:30 by aybiouss         ###   ########.fr       */
+=======
+/*   Updated: 2023/02/10 20:56:46 by sben-ela         ###   ########.fr       */
+>>>>>>> 13883f809b57d13f1ae59b4926bb5fc8e4ab2985
+>>>>>>> 7ebcd45e1e59ad676fdec1fe1ddf6f12c220bb25
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +55,12 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(char *str);
 char	**ft_split(char const *str, char c);
 void    ft_execute(t_shell *shell, char **env);
+<<<<<<< HEAD
+void	whatever(t_shell *shell, char **env);
+
+=======
 char	*parse_redirect(char *line);
+>>>>>>> 13883f809b57d13f1ae59b4926bb5fc8e4ab2985
 //utils
 int	ft_isalpha(int c);
 int count_redirect(char *line);
