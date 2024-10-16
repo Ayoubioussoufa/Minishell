@@ -49,7 +49,7 @@ To compile and run Minishell, follow these steps:
 
 1. **Clone the Repository**:
     ```sh
-    git clone git@github.com:ayoubioussoufa/minishell.git
+    git clone git@github.com:Ayoubioussoufa/minishell.git
     cd minishell
     ```
 
